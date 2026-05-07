@@ -26,12 +26,7 @@ function Navbar({ userName }) {
           </NavLink>
         </div>
 
-        <div className="nav-right" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-          {userName && (
-            <div className="user-greeting" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--tan)', fontWeight: 700 }}>
-              HI, {userName.toUpperCase()}
-            </div>
-          )}
+        <div className="nav-right" style={{ display: 'flex', alignItems: 'center' }}>
           <NavLink to="/contact" className="contact-btn">
             CONTACT US
           </NavLink>
