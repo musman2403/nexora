@@ -1,0 +1,223 @@
+/* ═══════════════════════════════════════════
+   NEXORA PREMIUM ANIMATIONS
+   Imported once in main.jsx, used everywhere
+   ═══════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────
+   1. TEXT REVEAL MASK
+   Wrap each word in .word-mask > .word-inner
+   ─────────────────────────────────────────── */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.05em;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.word-inner.revealed {
+  transform: translateY(0);
+}
+
+/* ───────────────────────────────────────────
+   2. MAGNETIC CURSOR
+   ─────────────────────────────────────────── */
+.nexora-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 32px; height: 32px;
+  border: 1.5px solid var(--tan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
+  mix-blend-mode: exclusion;
+  transform: translate(-50%, -50%);
+}
+
+.nexora-cursor.hovering {
+  width: 56px; height: 56px;
+  background: var(--tan-glow);
+  border-color: var(--tan);
+}
+
+/* Hide on touch devices */
+@media (hover: none) {
+  .nexora-cursor { display: none; }
+}
+
+/* ───────────────────────────────────────────
+   4. HORIZONTAL LINE DRAW
+   ─────────────────────────────────────────── */
+.line-draw {
+  height: 1px;
+  background: var(--sand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.line-draw.drawn {
+  transform: scaleX(1);
+}
+
+/* ───────────────────────────────────────────
+   5. NUMBER COUNTER ODOMETER
+   .counter-value — animated by JS
+   ─────────────────────────────────────────── */
+.counter-value {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--tan);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 0.3rem;
+}
+
+/* ───────────────────────────────────────────
+   6. IMAGE PARALLAX DRIFT
+   ─────────────────────────────────────────── */
+.parallax-wrap {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.parallax-img {
+  width: 100%;
+  height: 120%; /* extra height for drift room */
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* ───────────────────────────────────────────
+   8. STAGGERED LIST ENTRANCE
+   ─────────────────────────────────────────── */
+.stagger-item {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stagger-item.entered {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ───────────────────────────────────────────
+   9. SPLIT SCREEN WIPE TRANSITION
+   ─────────────────────────────────────────── */
+.page-wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  display: flex;
+}
+
+.page-wipe__panel {
+  width: 50%;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.page-wipe__panel--ink {
+  background: var(--ink);
+  transform-origin: top;
+}
+
+.page-wipe__panel--cream {
+  background: var(--cream);
+  transform-origin: bottom;
+}
+
+.page-wipe.active .page-wipe__panel {
+  animation: wipeIn 0.2s cubic-bezier(0.7, 0, 0.3, 1) forwards,
+             wipeOut 0.3s cubic-bezier(0.7, 0, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes wipeIn {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+@keyframes wipeOut {
+  from { transform: scaleY(1); }
+  to   { transform: scaleY(0); }
+}
+
+/* ───────────────────────────────────────────
+   10. FLOATING LABEL FORM FIELDS
+   ─────────────────────────────────────────── */
+.float-field {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.float-field input,
+.float-field textarea {
+  width: 100%;
+  padding: 1.2rem 0 0.6rem 0;
+  border: none;
+  border-bottom: 1.5px solid var(--sand);
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.float-field label {
+  position: absolute;
+  left: 0; top: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+}
+
+.float-field input:focus + label,
+.float-field input:not(:placeholder-shown) + label,
+.float-field textarea:focus + label,
+.float-field textarea:not(:placeholder-shown) + label {
+  top: -0.3rem;
+  font-size: 0.65rem;
+  color: var(--tan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.float-field::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 1.5px;
+  background: var(--tan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.float-field:focus-within::after {
+  transform: scaleX(1);
+}
+
+.float-field textarea {
+  resize: none;
+  min-height: 100px;
+}
