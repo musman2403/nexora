@@ -87,12 +87,7 @@ function Footer() {
         letterSpacing: '0.05em',
         opacity: 0.6
       }}>
-        <span>© 2026 NEXORA VENTURES.</span>
-        <div style={{ display: 'flex', gap: '1.5rem' }}>
-          <span>PRIVACY</span>
-          <span>TERMS</span>
-          <span style={{ color: 'var(--tan)', fontWeight: '600' }}>ANTIGRAVITY</span>
-        </div>
+        <span>© 2026 NEXORA VENTURES. ALL RIGHTS RESERVED.</span>
       </div>
     </footer>
   );
