@@ -15,21 +15,19 @@ function Navbar({ userName }) {
           <span className="logo-text">NEXORA</span>
         </Link>
         
-        <div className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
-          <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+        {/* Desktop nav links — inside wrapper for centering */}
+        <div className="nav-links-desktop">
+          <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             HOME
           </NavLink>
-          <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+          <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             ABOUT US
           </NavLink>
-          <NavLink to="/services" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+          <NavLink to="/services" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             SERVICES
           </NavLink>
-          <NavLink to="/projects" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+          <NavLink to="/projects" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             PROJECTS
-          </NavLink>
-          <NavLink to="/contact" className="contact-btn nav-mobile-cta" onClick={closeMenu}>
-            CONTACT US
           </NavLink>
         </div>
 
@@ -47,6 +45,25 @@ function Navbar({ userName }) {
             <span />
           </button>
         </div>
+      </div>
+
+      {/* Mobile overlay — OUTSIDE nav-wrapper to avoid backdrop-filter containing block */}
+      <div className={`nav-mobile-overlay ${menuOpen ? 'nav-mobile-overlay--open' : ''}`}>
+        <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+          HOME
+        </NavLink>
+        <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+          ABOUT US
+        </NavLink>
+        <NavLink to="/services" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+          SERVICES
+        </NavLink>
+        <NavLink to="/projects" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+          PROJECTS
+        </NavLink>
+        <NavLink to="/contact" className="contact-btn" onClick={closeMenu}>
+          CONTACT US
+        </NavLink>
       </div>
     </nav>
   );
