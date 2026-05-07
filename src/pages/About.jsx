@@ -40,7 +40,7 @@ function About({ userName }) {
   return (
     <div className="page-container">
       {/* About Section */}
-      <div style={{ marginBottom: '8rem' }}>
+      <div style={{ marginBottom: '5rem' }}>
         <span className="accent-text">Our Story</span>
         <h1 className="title-reveal">
           {userName ? `For You, ${userName}` : 'About Us'}
@@ -48,34 +48,34 @@ function About({ userName }) {
         
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '3rem',
-          marginTop: '3rem'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', 
+          gap: '2rem',
+          marginTop: '2.5rem'
         }}>
-          <div className="glass-card" style={{ gridColumn: 'span 2' }}>
-            <p className="subtitle" style={{ fontSize: '1.4rem', maxWidth: '100%', color: 'var(--text-main)', fontWeight: '500' }}>
+          <div className="glass-card about-main-card">
+            <p className="subtitle" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.4rem)', maxWidth: '100%', color: 'var(--text-main)', fontWeight: '500' }}>
               Nexora is a full-spectrum real estate solutions company committed to transforming how people build, invest, and experience spaces.
             </p>
-            <p className="subtitle" style={{ fontSize: '1.1rem', maxWidth: '100%', marginTop: '2rem' }}>
+            <p className="subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', maxWidth: '100%', marginTop: '1.5rem' }}>
               We provide integrated services across development, construction, consultancy, design, marketing, and turnkey execution ensuring seamless delivery from concept to completion.
             </p>
-            <p className="subtitle" style={{ fontSize: '1.1rem', maxWidth: '100%', marginTop: '1.5rem' }}>
+            <p className="subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', maxWidth: '100%', marginTop: '1rem' }}>
               With a deep understanding of market dynamics and client needs, Nexora creates high-value residential, commercial, and specialized projects that combine functionality, aesthetics, and long-term returns.
             </p>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div className="glass-card" style={{ padding: '2rem', borderLeft: '4px solid var(--primary)' }}>
-              <h4 style={{ color: 'var(--primary)', marginBottom: '1rem', textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '0.2em', fontWeight: '800' }}>Our Mission</h4>
-              <p style={{ fontSize: '1.05rem', color: 'var(--text-main)', lineHeight: '1.5', fontWeight: '500' }}>
+            <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid var(--primary)' }}>
+              <h4 style={{ color: 'var(--primary)', marginBottom: '0.8rem', textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '0.2em', fontWeight: '800' }}>Our Mission</h4>
+              <p style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.5', fontWeight: '500' }}>
                 To provide full-spectrum real estate solutions focused on value, aesthetics, and long-term returns.
               </p>
             </div>
-            <div className="glass-card" style={{ padding: '2rem', borderLeft: '4px solid var(--primary)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid var(--primary)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
                 <h4 style={{ color: 'var(--primary)', textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '0.2em', fontWeight: '800' }}>Our Vision</h4>
               </div>
-              <p style={{ fontSize: '1.05rem', color: 'var(--text-main)', lineHeight: '1.5', fontWeight: '500' }}>
+              <p style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.5', fontWeight: '500' }}>
                 <span style={{ color: 'var(--primary)', fontWeight: '800' }}>VISION:</span> To redefine how people live, work, and invest <br/>
                 <span style={{ color: 'var(--primary)', fontWeight: '800' }}>STATEMENT:</span> through integrated real estate solutions
               </p>
@@ -85,16 +85,16 @@ function About({ userName }) {
       </div>
 
       {/* Core Pillars Section */}
-      <div style={{ marginBottom: '8rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+      <div style={{ marginBottom: '5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <span className="accent-text">Our Foundation</span>
-          <h2 className="title-reveal" style={{ fontSize: '3.5rem' }}>Core Pillars</h2>
+          <h2 className="title-reveal" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>Core Pillars</h2>
         </div>
         
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-          gap: '1.5rem' 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))', 
+          gap: '1.2rem' 
         }}>
           {[
             { 
@@ -128,21 +128,21 @@ function About({ userName }) {
               icon: <div style={{ color: 'var(--primary)' }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
             }
           ].map((pillar, i) => (
-            <div key={i} className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
+            <div key={i} className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', alignItems: 'flex-start' }}>
               <div style={{ background: 'var(--bg-dark)', padding: '0.8rem', borderRadius: '12px', border: '1px solid var(--border)' }}>
                 {pillar.icon}
               </div>
-              <h4 style={{ color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}>{pillar.title}</h4>
-              <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: '1.6' }}>{pillar.desc}</p>
+              <h4 style={{ color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: '700' }}>{pillar.title}</h4>
+              <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: '1.6' }}>{pillar.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Leadership Section */}
-      <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
         <span className="accent-text">Meet Our Leaders</span>
-        <h2 className="title-reveal" style={{ fontSize: '3rem' }}>Visionary Leadership</h2>
+        <h2 className="title-reveal" style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)' }}>Visionary Leadership</h2>
         <p className="subtitle" style={{ margin: '0 auto' }}>
           Driven by corporate discipline and entrepreneurial agility, our leadership team positions NEXORA as a forward-looking platform for strategic growth.
         </p>
@@ -153,7 +153,7 @@ function About({ userName }) {
           <div key={i} className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ 
               width: '100%', 
-              height: '350px', 
+              height: 'clamp(220px, 40vw, 350px)', 
               borderRadius: '16px', 
               overflow: 'hidden',
               marginBottom: '1.5rem',
@@ -171,20 +171,20 @@ function About({ userName }) {
                 }} 
               />
             </div>
-            <h3 style={{ marginBottom: '0.5rem', fontSize: '1.5rem' }}>{leader.name}</h3>
+            <h3 style={{ marginBottom: '0.5rem', fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)' }}>{leader.name}</h3>
             <span className="accent-text" style={{ fontSize: '0.75rem', margin: '0', letterSpacing: '0.15em' }}>{leader.role}</span>
             
             <ul style={{ 
               listStyle: 'none', 
               padding: 0, 
-              marginTop: '1.5rem', 
+              marginTop: '1.2rem', 
               display: 'flex', 
               flexDirection: 'column', 
-              gap: '0.8rem' 
+              gap: '0.6rem' 
             }}>
               {leader.highlights.map((h, j) => (
                 <li key={j} style={{ 
-                  fontSize: '0.85rem', 
+                  fontSize: '0.82rem', 
                   color: 'var(--muted)', 
                   display: 'flex', 
                   alignItems: 'flex-start', 

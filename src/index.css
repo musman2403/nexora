@@ -492,3 +492,208 @@ h1, h2, h3, h4 {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
 }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — Tablet (≤ 1024px)
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .page-container {
+    padding: 140px 5% 40px;
+  }
+
+  .home-section {
+    padding: 80px 6%;
+    min-height: auto;
+  }
+
+  .title-reveal {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .leaders-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .glass-card,
+  .content-box {
+    padding: 2rem;
+  }
+
+  .service-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-decoration {
+    display: none;
+  }
+
+  .hero-section {
+    padding-top: 140px !important;
+  }
+
+  .section-content {
+    max-width: 100%;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — Mobile (≤ 768px)
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 120px 4% 30px;
+  }
+
+  .home-section {
+    padding: 60px 5%;
+    min-height: auto;
+  }
+
+  .hero-section {
+    padding-top: 120px !important;
+  }
+
+  .section-content {
+    max-width: 100%;
+  }
+
+  .title-reveal {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .accent-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+  }
+
+  .glass-card,
+  .content-box {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .glass-card:hover,
+  .content-box:hover {
+    transform: none;
+  }
+
+  .service-card {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .service-card:hover {
+    transform: none;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .leaders-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .grid-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .glass-btn {
+    padding: 0.75rem 1.4rem;
+    font-size: 0.7rem;
+  }
+
+  .glass-btn.primary-btn,
+  .contact-btn {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.65rem;
+  }
+
+  .entry-input {
+    font-size: 1.4rem;
+  }
+
+  .entry-content h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .process-step:hover {
+    transform: none;
+  }
+
+  .grid-item:hover {
+    transform: none;
+  }
+
+  .leader-card:hover {
+    transform: none;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — Small Mobile (≤ 480px)
+   ═══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 90px 3.5% 20px;
+  }
+
+  .home-section {
+    padding: 30px 4%;
+  }
+
+  .hero-section {
+    padding-top: 100px !important;
+  }
+
+  .title-reveal {
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .glass-card,
+  .content-box {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .service-card {
+    padding: 1.5rem 1rem;
+    border-radius: 14px;
+  }
+
+  .glass-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.65rem;
+  }
+
+  .glass-btn.primary-btn,
+  .contact-btn {
+    padding: 0.75rem 1.4rem;
+    font-size: 0.6rem;
+  }
+
+  .entry-input {
+    font-size: 1.2rem;
+  }
+
+  .entry-overlay {
+    padding: 1.5rem;
+  }
+}

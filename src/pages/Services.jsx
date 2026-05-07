@@ -44,7 +44,7 @@ function Services({ userName }) {
   return (
     <div className="page-container">
       {/* Header */}
-      <div style={{ textAlign: 'center', marginBottom: '8rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
         <span className="accent-text">Our Expertise</span>
         <h1 className="title-reveal">{userName ? `Tailored Solutions for ${userName}` : 'Comprehensive Solutions'}</h1>
         <p className="subtitle" style={{ margin: '0 auto' }}>
@@ -53,18 +53,18 @@ function Services({ userName }) {
       </div>
 
       {/* Services Grid */}
-      <div className="services-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
+      <div className="services-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2rem' }}>
         {allServices.map((service, i) => (
-          <div key={i} className="service-card" style={{ padding: '3.5rem 3rem' }}>
-            <div style={{ color: 'var(--tan)', marginBottom: '2rem' }}>
-              {React.cloneElement(service.icon, { size: 40 })}
+          <div key={i} className="service-card" style={{ padding: 'clamp(1.5rem, 3vw, 3.5rem) clamp(1.2rem, 3vw, 3rem)' }}>
+            <div style={{ color: 'var(--tan)', marginBottom: '1.5rem' }}>
+              {React.cloneElement(service.icon, { size: 36 })}
             </div>
-            <h3 style={{ fontSize: '1.8rem', color: 'var(--ink)', marginBottom: '1rem' }}>{service.title}</h3>
-            <p style={{ color: 'var(--muted)', lineHeight: '1.7', marginBottom: '2rem' }}>{service.description}</p>
+            <h3 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', color: 'var(--ink)', marginBottom: '1rem' }}>{service.title}</h3>
+            <p style={{ color: 'var(--muted)', lineHeight: '1.7', marginBottom: '1.5rem' }}>{service.description}</p>
             
-            <ul className="feature-list" style={{ marginTop: '2rem', borderTop: '1px solid var(--walnut-10)', paddingTop: '2rem' }}>
+            <ul className="feature-list" style={{ marginTop: '1.5rem', borderTop: '1px solid var(--walnut-10)', paddingTop: '1.5rem' }}>
               {service.features.map((feat, idx) => (
-                <li key={idx} style={{ fontSize: '0.9rem', color: 'var(--ink)', opacity: 0.8, marginBottom: '1rem' }}>
+                <li key={idx} style={{ fontSize: '0.85rem', color: 'var(--ink)', opacity: 0.8, marginBottom: '0.8rem' }}>
                   <CheckCircle size={16} color="var(--tan)" /> {feat}
                 </li>
               ))}
@@ -74,14 +74,14 @@ function Services({ userName }) {
       </div>
 
       {/* CTA Section */}
-      <div className="glass-card" style={{ marginTop: '10rem', textAlign: 'center', padding: '5rem', background: 'linear-gradient(135deg, var(--parchment) 0%, #120D08 100%)' }}>
-        <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', fontWeight: '800' }}>Ready to start your next project?</h2>
-        <p className="subtitle" style={{ margin: '0 auto', marginBottom: '3rem' }}>
+      <div className="glass-card" style={{ marginTop: '6rem', textAlign: 'center', padding: 'clamp(2rem, 5vw, 5rem)', background: 'linear-gradient(135deg, var(--parchment) 0%, #120D08 100%)' }}>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', marginBottom: '1.5rem', fontWeight: '800' }}>Ready to start your next project?</h2>
+        <p className="subtitle" style={{ margin: '0 auto', marginBottom: '2.5rem' }}>
           Partner with Nexora for integrated solutions that transform your architectural vision into a high-value reality.
         </p>
-        <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
-          <button className="glass-btn primary-btn" style={{ padding: '1.2rem 3rem' }}>GET A CONSULTATION</button>
-          <button className="glass-btn" style={{ padding: '1.2rem 3rem' }}>VIEW OUR WORK</button>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button className="glass-btn primary-btn" style={{ padding: '1rem 2.5rem' }}>GET A CONSULTATION</button>
+          <button className="glass-btn" style={{ padding: '1rem 2.5rem' }}>VIEW OUR WORK</button>
         </div>
       </div>
     </div>
