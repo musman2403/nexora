@@ -30,8 +30,8 @@
 .nexora-cursor {
   position: fixed;
   top: 0; left: 0;
-  width: 32px; height: 32px;
-  border: 1.5px solid var(--tan);
+  width: 28px; height: 28px;
+  border: 1.5px solid var(--accent);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -41,9 +41,9 @@
 }
 
 .nexora-cursor.hovering {
-  width: 56px; height: 56px;
-  background: var(--tan-glow);
-  border-color: var(--tan);
+  width: 52px; height: 52px;
+  background: var(--accent-glow);
+  border-color: var(--accent);
 }
 
 /* Hide on touch devices */
@@ -56,10 +56,10 @@
    ─────────────────────────────────────────── */
 .line-draw {
   height: 1px;
-  background: var(--sand);
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.8s var(--ease-out);
 }
 
 .line-draw.drawn {
@@ -71,15 +71,16 @@
    .counter-value — animated by JS
    ─────────────────────────────────────────── */
 .counter-value {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 800;
+  font-family: var(--font-mono);
+  font-weight: 700;
   font-size: 3rem;
-  color: var(--tan);
+  color: var(--accent);
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
 
 .counter-label {
+  font-family: 'Inter', sans-serif;
   font-size: 0.8rem;
   color: var(--muted);
   text-transform: uppercase;
@@ -135,12 +136,12 @@
 }
 
 .page-wipe__panel--ink {
-  background: var(--ink);
+  background: var(--accent);
   transform-origin: top;
 }
 
-.page-wipe__panel--cream {
-  background: var(--cream);
+.page-wipe__panel--tan {
+  background: var(--bg-elevated);
   transform-origin: bottom;
 }
 
@@ -171,9 +172,9 @@
   width: 100%;
   padding: 1.2rem 0 0.6rem 0;
   border: none;
-  border-bottom: 1.5px solid var(--sand);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
   background: transparent;
-  color: var(--ink);
+  color: #FFFFFF;
   font-family: inherit;
   font-size: 1rem;
   outline: none;
@@ -196,7 +197,7 @@
 .float-field textarea:not(:placeholder-shown) + label {
   top: -0.3rem;
   font-size: 0.65rem;
-  color: var(--tan);
+  color: var(--accent);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-weight: 700;
@@ -207,7 +208,7 @@
   position: absolute;
   bottom: 0; left: 0;
   width: 100%; height: 1.5px;
-  background: var(--tan);
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);

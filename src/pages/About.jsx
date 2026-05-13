@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { X, CheckCircle, ArrowRight } from 'lucide-react';
 
 const leaders = [
   {
     name: "Zubair Ahsan Farooqi",
     role: "CEO & Director Strategic Planning",
     image: "/images/ceo_portrait.jpg",
+    bio: "Zubair Ahsan Farooqi is a visionary leader with over 23 years of experience in Pakistan's corporate energy and real estate sectors. He has been instrumental in numerous high-impact national initiatives and brings a unique blend of corporate discipline and entrepreneurial agility to Nexora Ventures.",
     highlights: [
       "23+ years in Pakistan's corporate energy & real estate sectors.",
       "Expertise in residential/commercial planning and turnkey execution.",
@@ -16,6 +18,7 @@ const leaders = [
     name: "Mr. Syed Shiraz",
     role: "Director – Sales",
     image: "/images/sales_director.png",
+    bio: "Mr. Syed Shiraz is a strategic sales leader with 15+ years of experience in the real estate industry. He specializes in strategic land acquisition and has an extensive network that he leverages to identify high-potential opportunities for Nexora Ventures and its clients.",
     highlights: [
       "Strategic leader with 15+ years in high-impact sales.",
       "Expert in strategic land acquisition and opportunity identification.",
@@ -27,6 +30,7 @@ const leaders = [
     name: "Mr. Zahid Munir",
     role: "Director Key Projects",
     image: "/images/projects_director.jpg",
+    bio: "Mr. Zahid Munir, educated in the UK, has over a decade of experience in the Lahore real estate market. As the Head of Premio Homes, he oversees a flagship development of 1,000 homes, focusing on rapid sales absorption and long-term value creation.",
     highlights: [
       "UK-educated project leader with over a decade of Lahore market mastery.",
       "Pivotal role in high-profile projects like District One & Pak Valley.",
@@ -36,48 +40,87 @@ const leaders = [
   }
 ];
 
+const Modal = ({ leader, onClose }) => {
+  if (!leader) return null;
+  return (
+    <div className="modal-overlay" onClick={onClose} data-lenis-prevent>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose}><X /></button>
+        <div className="modal-body">
+          <div className="modal-image">
+            <img src={leader.image} alt={leader.name} />
+          </div>
+          <div className="modal-info">
+            <span className="accent-text">{leader.role}</span>
+            <h2>{leader.name}</h2>
+            <p className="bio">{leader.bio}</p>
+            <ul className="modal-highlights">
+              {leader.highlights.map((h, i) => (
+                <li key={i}><CheckCircle size={16} /> {h}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function About({ userName }) {
+  const [selectedLeader, setSelectedLeader] = useState(null);
+  
+  useEffect(() => {
+    if (selectedLeader) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+    return () => document.body.classList.remove('modal-open');
+  }, [selectedLeader]);
+
   return (
     <div className="page-container">
+      <Modal leader={selectedLeader} onClose={() => setSelectedLeader(null)} />
+
       {/* About Section */}
       <div style={{ marginBottom: '5rem' }}>
         <span className="accent-text">Our Story</span>
-        <h1 className="title-reveal">
-          {userName ? `For You, ${userName}` : 'About Us'}
+        <h1 className="title-reveal hero-title" style={{ fontFamily: 'var(--font-display)' }}>
+          {userName ? <>{userName}, this is <span className="personalized-name">Nexora</span></> : 'About Nexora Ventures'}
         </h1>
-        
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', 
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
           gap: '2rem',
           marginTop: '2.5rem'
         }}>
           <div className="glass-card about-main-card">
-            <p className="subtitle" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.4rem)', maxWidth: '100%', color: 'var(--text-main)', fontWeight: '500' }}>
-              Nexora is a full-spectrum real estate solutions company committed to transforming how people build, invest, and experience spaces.
+            <p className="subtitle" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.4rem)', maxWidth: '100%', color: 'var(--white)', fontWeight: '500' }}>
+              Nexora Ventures is a tech-integrated real estate powerhouse, optimizing how people interact with physical environments.
             </p>
             <p className="subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', maxWidth: '100%', marginTop: '1.5rem' }}>
-              We provide integrated services across development, construction, consultancy, design, marketing, and turnkey execution ensuring seamless delivery from concept to completion.
+              We deploy smart infrastructure, data-driven consultancy, and precision turnkey execution to deliver assets that are future-proof and high-yield.
             </p>
             <p className="subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', maxWidth: '100%', marginTop: '1rem' }}>
-              With a deep understanding of market dynamics and client needs, Nexora creates high-value residential, commercial, and specialized projects that combine functionality, aesthetics, and long-term returns.
+              By merging advanced logistics with architectural mastery, Nexora Ventures creates the next generation of smart residential and commercial ecosystems.
             </p>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid var(--primary)' }}>
-              <h4 style={{ color: 'var(--primary)', marginBottom: '0.8rem', textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '0.2em', fontWeight: '800' }}>Our Mission</h4>
-              <p style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.5', fontWeight: '500' }}>
+            <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid var(--accent)' }}>
+              <h4 style={{ color: 'var(--accent)', marginBottom: '0.8rem', textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '0.2em', fontWeight: '800' }}>Our Mission</h4>
+              <p style={{ fontSize: '1rem', color: 'var(--white)', lineHeight: '1.5', fontWeight: '500' }}>
                 To provide full-spectrum real estate solutions focused on value, aesthetics, and long-term returns.
               </p>
             </div>
-            <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid var(--primary)' }}>
+            <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid var(--accent)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
-                <h4 style={{ color: 'var(--primary)', textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '0.2em', fontWeight: '800' }}>Our Vision</h4>
+                <h4 style={{ color: 'var(--accent)', textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '0.2em', fontWeight: '800' }}>Our Vision</h4>
               </div>
-              <p style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.5', fontWeight: '500' }}>
-                <span style={{ color: 'var(--primary)', fontWeight: '800' }}>VISION:</span> To redefine how people live, work, and invest <br/>
-                <span style={{ color: 'var(--primary)', fontWeight: '800' }}>STATEMENT:</span> through integrated real estate solutions
+              <p style={{ fontSize: '1rem', color: 'var(--white)', lineHeight: '1.5', fontWeight: '500' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: '800' }}>VISION:</span> To redefine how people live, work, and invest <br />
+                <span style={{ color: 'var(--accent)', fontWeight: '800' }}>STATEMENT:</span> through integrated real estate solutions
               </p>
             </div>
           </div>
@@ -88,52 +131,25 @@ function About({ userName }) {
       <div style={{ marginBottom: '5rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <span className="accent-text">Our Foundation</span>
-          <h2 className="title-reveal" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>Core Pillars</h2>
+          <h2 className="title-reveal" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontFamily: 'var(--font-display)' }}>Core Pillars</h2>
         </div>
-        
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))', 
-          gap: '1.2rem' 
-        }}>
+
+        <div className="pillars-list">
           {[
-            { 
-              title: "Integrated Solutions", 
-              desc: "From land acquisition to turnkey delivery",
-              icon: <div style={{ color: 'var(--primary)' }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></div>
-            },
-            { 
-              title: "Design Excellence", 
-              desc: "Architecture that blends function with aesthetics",
-              icon: <div style={{ color: 'var(--primary)' }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19 7-7 3 3-7 7-3-3Z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5Z"/><path d="m2 2 20 20"/><path d="m5 16 2 2"/></svg></div>
-            },
-            { 
-              title: "Investment Intelligence", 
-              desc: "Data-driven property decisions",
-              icon: <div style={{ color: 'var(--primary)' }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
-            },
-            { 
-              title: "Quality Construction", 
-              desc: "Built for durability and long-term value",
-              icon: <div style={{ color: 'var(--primary)' }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div>
-            },
-            { 
-              title: "Transparency & Trust", 
-              desc: "Clear processes, honest dealings",
-              icon: <div style={{ color: 'var(--primary)' }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            },
-            { 
-              title: "Innovation & Sustainability", 
-              desc: "Future-ready development",
-              icon: <div style={{ color: 'var(--primary)' }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            }
+            { title: "Integrated Solutions", desc: "From land acquisition to turnkey delivery" },
+            { title: "Design Excellence", desc: "Architecture that blends function with aesthetics" },
+            { title: "Investment Intelligence", desc: "Data-driven property decisions" },
+            { title: "Quality Construction", desc: "Built for durability and long-term value" },
+            { title: "Transparency & Trust", desc: "Clear processes, honest dealings" },
+            { title: "Innovation & Sustainability", desc: "Future-ready development" }
           ].map((pillar, i) => (
-            <div key={i} className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', alignItems: 'flex-start' }}>
-              <div style={{ background: 'var(--bg-dark)', padding: '0.8rem', borderRadius: '12px', border: '1px solid var(--border)' }}>
-                {pillar.icon}
+            <div key={i} className="pillar-line-item">
+              <div className="pillar-dot" />
+              <div className="pillar-text">
+                <h4>{pillar.title}</h4>
+                <p>{pillar.desc}</p>
               </div>
-              <h4 style={{ color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: '700' }}>{pillar.title}</h4>
-              <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: '1.6' }}>{pillar.desc}</p>
+              <div className="pillar-line" />
             </div>
           ))}
         </div>
@@ -142,60 +158,23 @@ function About({ userName }) {
       {/* Leadership Section */}
       <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
         <span className="accent-text">Meet Our Leaders</span>
-        <h2 className="title-reveal" style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)' }}>Visionary Leadership</h2>
+        <h2 className="title-reveal" style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', fontFamily: 'var(--font-display)' }}>Visionary Leadership</h2>
         <p className="subtitle" style={{ margin: '0 auto' }}>
-          Driven by corporate discipline and entrepreneurial agility, our leadership team positions NEXORA as a forward-looking platform for strategic growth.
+          Driven by corporate discipline and entrepreneurial agility, our leadership team positions NEXORA VENTURES as a forward-looking platform for strategic growth.
         </p>
       </div>
 
       <div className="leaders-grid">
         {leaders.map((leader, i) => (
-          <div key={i} className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ 
-              width: '100%', 
-              height: 'clamp(220px, 40vw, 350px)', 
-              borderRadius: '16px', 
-              overflow: 'hidden',
-              marginBottom: '1.5rem',
-              background: 'var(--bg-dark)',
-              border: '1px solid var(--border)'
-            }}>
-              <img 
-                src={leader.image} 
-                alt={leader.name} 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'cover',
-                  filter: 'grayscale(10%) contrast(110%)'
-                }} 
-              />
+          <div key={i} className="leader-card" onClick={() => setSelectedLeader(leader)} style={{ cursor: 'pointer' }}>
+            <div className="leader-image-wrap">
+              <img src={leader.image} alt={leader.name} />
             </div>
-            <h3 style={{ marginBottom: '0.5rem', fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)' }}>{leader.name}</h3>
-            <span className="accent-text" style={{ fontSize: '0.75rem', margin: '0', letterSpacing: '0.15em' }}>{leader.role}</span>
-            
-            <ul style={{ 
-              listStyle: 'none', 
-              padding: 0, 
-              marginTop: '1.2rem', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: '0.6rem' 
-            }}>
-              {leader.highlights.map((h, j) => (
-                <li key={j} style={{ 
-                  fontSize: '0.82rem', 
-                  color: 'var(--muted)', 
-                  display: 'flex', 
-                  alignItems: 'flex-start', 
-                  gap: '0.6rem',
-                  lineHeight: '1.5'
-                }}>
-                  <div style={{ marginTop: '0.3rem', width: '6px', height: '6px', borderRadius: '50%', background: 'var(--tan)', flexShrink: 0 }} />
-                  {h}
-                </li>
-              ))}
-            </ul>
+            <h3>{leader.name}</h3>
+            <span className="accent-text">{leader.role}</span>
+            <div className="view-profile-link">
+              VIEW PROFILE <ArrowRight size={14} />
+            </div>
           </div>
         ))}
       </div>

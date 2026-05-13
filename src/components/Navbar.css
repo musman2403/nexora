@@ -1,8 +1,9 @@
 .navbar {
   width: 100%;
-  padding: 1.5rem 5%;
+  padding: 1.2rem 5%;
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -11,18 +12,25 @@
 
 .nav-wrapper {
   width: 100%;
-  max-width: 1600px;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 2rem;
-  background: rgba(10, 8, 6, 0.95);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(193, 153, 113, 0.15);
-  border-radius: 20px;
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+  padding: 1rem 2.5rem;
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   position: relative;
   z-index: 1001;
+  transition: background var(--duration-normal) ease,
+              border-color var(--duration-normal) ease;
+}
+
+.nav-wrapper.scrolled {
+  background: rgba(10, 10, 15, 0.92);
+  border-color: var(--accent-soft);
 }
 
 .nav-logo {
@@ -32,19 +40,39 @@
   text-decoration: none;
 }
 
-.nav-logo img { height: 35px; width: auto; }
-
-.logo-text {
-  color: var(--ink);
-  font-weight: 800;
-  letter-spacing: 0.3em;
-  font-size: 1.2rem;
+.nav-logo img {
+  height: 40px;
+  width: auto;
 }
 
-/* Desktop nav links — centered inside wrapper */
+.logo-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+
+.logo-text-top {
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  font-size: 1.3rem;
+  font-family: var(--font-body);
+}
+
+.logo-text-bottom {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  margin-top: 2px;
+  font-family: var(--font-body);
+}
+
+/* Desktop nav links — centered */
 .nav-links-desktop {
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -52,34 +80,32 @@
 
 .nav-link {
   text-decoration: none;
-  color: var(--ink);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  opacity: 0.7;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-secondary);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  transition: color var(--duration-normal) var(--ease-out);
   position: relative;
   padding: 5px 0;
+  font-family: var(--font-body);
 }
 
 .nav-link:hover {
-  opacity: 1;
-  text-shadow: 0 0 15px rgba(193, 153, 113, 0.4);
+  color: var(--text-primary);
 }
 
 .nav-link.active {
-  opacity: 1;
-  color: #f5f0e6;
-  text-shadow: 0 0 20px rgba(193, 153, 113, 0.6);
+  color: var(--accent);
 }
 
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 2px;
-  background: var(--tan);
-  box-shadow: 0 0 10px var(--tan);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
   border-radius: 2px;
 }
 
@@ -89,7 +115,14 @@
   gap: 1rem;
 }
 
-/* Hamburger — hidden on desktop */
+.nav-right .contact-btn {
+  padding: 0.6rem 1.5rem !important;
+  font-size: var(--text-label) !important;
+  margin-top: 0 !important;
+  border-radius: var(--radius-pill) !important;
+}
+
+/* Hamburger */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -103,24 +136,28 @@
 
 .nav-hamburger span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
-  background: var(--ink);
+  background: var(--text-primary);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease-out);
 }
 
 .nav-hamburger--open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
+  background: var(--accent);
 }
+
 .nav-hamburger--open span:nth-child(2) {
   opacity: 0;
 }
+
 .nav-hamburger--open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+  background: var(--accent);
 }
 
-/* Mobile overlay — hidden on desktop */
+/* Mobile overlay */
 .nav-mobile-overlay {
   display: none;
 }
@@ -130,7 +167,7 @@
    ═══════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .navbar {
-    padding: 1rem 4%;
+    padding: 0.8rem 4%;
   }
 
   .nav-wrapper {
@@ -141,7 +178,6 @@
     display: flex;
   }
 
-  /* Hide desktop-only elements */
   .nav-desktop-cta {
     display: none;
   }
@@ -150,7 +186,6 @@
     display: none;
   }
 
-  /* Mobile overlay — full screen, outside nav-wrapper */
   .nav-mobile-overlay {
     display: flex;
     position: fixed;
@@ -160,7 +195,7 @@
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    background: #0A0806;
+    background: var(--bg);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -168,7 +203,7 @@
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s;
+    transition: opacity 0.4s var(--ease-out), visibility 0.4s;
   }
 
   .nav-mobile-overlay--open {
@@ -177,42 +212,53 @@
   }
 
   .nav-mobile-overlay .nav-link {
-    font-size: 1.1rem;
-    letter-spacing: 0.25em;
-    opacity: 0.85;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--text-secondary);
   }
 
   .nav-mobile-overlay .nav-link.active {
-    opacity: 1;
+    color: var(--accent);
   }
 
   .nav-mobile-overlay .contact-btn {
     margin-top: 1rem;
   }
 
-  .logo-text {
-    font-size: 1rem;
+  .logo-text-top {
+    font-size: 1.1rem;
     letter-spacing: 0.2em;
   }
 
+  .logo-text-bottom {
+    font-size: 0.6rem;
+  }
+
   .nav-logo img {
-    height: 28px;
+    height: 35px;
   }
 }
 
 @media (max-width: 480px) {
   .navbar {
-    padding: 0.8rem 3%;
+    padding: 0.6rem 3%;
   }
+
   .nav-wrapper {
-    padding: 0.5rem 1rem;
-    border-radius: 14px;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-md);
   }
-  .logo-text {
-    font-size: 0.85rem;
-    letter-spacing: 0.15em;
+
+  .logo-text-top {
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
   }
+
+  .logo-text-bottom {
+    font-size: 0.5rem;
+  }
+
   .nav-logo img {
-    height: 24px;
+    height: 30px;
   }
 }

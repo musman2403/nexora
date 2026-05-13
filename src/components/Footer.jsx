@@ -4,26 +4,27 @@ import { Globe, Mail, MapPin, Phone, Share2, ExternalLink } from 'lucide-react';
 
 function Footer() {
   return (
-    <footer style={{ 
-      background: 'var(--cream)',
-      borderTop: '1px solid var(--walnut-10)',
+    <footer style={{
+      background: 'var(--bg)',
+      borderTop: '1px solid var(--border)',
       padding: 'clamp(30px, 5vw, 60px) clamp(5%, 8vw, 10%) clamp(20px, 3vw, 30px)',
       position: 'relative',
       zIndex: 10,
-      color: 'var(--ink)'
+      color: 'var(--white)'
     }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 160px), 1fr))', gap: '2.5rem' }}>
         <div className="footer-brand">
-          <h2 style={{ 
-            fontSize: 'clamp(1.3rem, 3vw, 1.8rem)', 
-            fontWeight: '800', 
-            marginBottom: '1rem', 
+          <h2 style={{
+            fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
+            fontWeight: '800',
+            marginBottom: '1rem',
             letterSpacing: '-0.04em',
-            background: 'linear-gradient(135deg, #f5f0e6 0%, var(--tan) 100%)',
+            fontFamily: 'var(--font-display)',
+            background: 'linear-gradient(135deg, #FFFFFF 0%, var(--accent) 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
-          }}>NEXORA.</h2>
-          <p style={{ fontSize: '0.82rem', maxWidth: '300px', lineHeight: '1.6', color: 'var(--muted)' }}>
+          }}>NEXORA VENTURES</h2>
+          <p style={{ fontSize: '0.82rem', maxWidth: '300px', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
             A leading real estate solutions company dedicated to transforming architectural visions into high-value realities.
           </p>
         </div>
@@ -31,19 +32,20 @@ function Footer() {
         <div>
           <h4 className="accent-text" style={{ marginBottom: '1rem', fontSize: '0.65rem' }}>Company</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
-            <Link to="/" style={{ color: 'var(--muted)', textDecoration: 'none', fontSize: '0.8rem' }}>Home</Link>
-            <Link to="/about" style={{ color: 'var(--muted)', textDecoration: 'none', fontSize: '0.8rem' }}>Our Story</Link>
-            <Link to="/services" style={{ color: 'var(--muted)', textDecoration: 'none', fontSize: '0.8rem' }}>Core Services</Link>
-            <Link to="/projects" style={{ color: 'var(--muted)', textDecoration: 'none', fontSize: '0.8rem' }}>Signature Projects</Link>
+            <Link to="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.8rem' }}>Home</Link>
+            <Link to="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.8rem' }}>Our Story</Link>
+            <Link to="/services" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.8rem' }}>Core Services</Link>
+            <Link to="/projects" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.8rem' }}>Signature Projects</Link>
+            <Link to="/blog" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.8rem' }}>Blog</Link>
           </div>
         </div>
 
         <div>
           <h4 className="accent-text" style={{ marginBottom: '1rem', fontSize: '0.65rem' }}>Connect</h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}><MapPin size={14} color="var(--tan)" /> New Lahore City</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}><Mail size={14} color="var(--tan)" /> contact@nexora.com.pk</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}><Phone size={14} color="var(--tan)" /> +92 300 123 4567</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}><MapPin size={14} color="var(--accent)" /> New Lahore City</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}><Mail size={14} color="var(--accent)" /> contact@nexora.com.pk</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}><Phone size={14} color="var(--accent)" /> +92 300 123 4567</div>
           </div>
         </div>
 
@@ -55,17 +57,17 @@ function Footer() {
               { icon: <Share2 size={16} />, label: 'Social' },
               { icon: <ExternalLink size={16} />, label: 'External' }
             ].map((s, i) => (
-              <div key={i} style={{ 
-                padding: '0.6rem', 
-                borderRadius: '8px',
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(193,153,113,0.15)',
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
+              <div key={i} style={{
+                padding: '0.6rem',
+                borderRadius: 'var(--radius-sm)',
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid var(--border)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-                color: 'var(--tan)'
+                color: 'var(--accent)'
               }}>
                 {s.icon}
               </div>
@@ -74,16 +76,16 @@ function Footer() {
         </div>
       </div>
 
-      <div style={{ 
-        marginTop: '30px', 
-        paddingTop: '15px', 
-        borderTop: '1px solid var(--walnut-10)', 
-        display: 'flex', 
+      <div style={{
+        marginTop: '30px',
+        paddingTop: '15px',
+        borderTop: '1px solid var(--border)',
+        display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: '0.6rem',
-        color: 'var(--muted)',
+        color: 'var(--text-tertiary)',
         letterSpacing: '0.05em',
         opacity: 0.6,
         textAlign: 'center'
