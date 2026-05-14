@@ -146,12 +146,20 @@ function Home({ userName }) {
       const { data: blogData } = await supabase.from('blogs').select('*').order('created_at', { ascending: false }).limit(3);
       if (blogData) setLatestBlogs(blogData);
 
-      const { data: configData } = await supabase.from('site_config').select('*');
-      if (configData) {
+      const { data: configData, error: configError } = await supabase.from('site_config').select('*');
+      console.log('--- DB FETCH DEBUG ---');
+      console.log('Config Data:', configData);
+      console.log('Config Error:', configError);
+      
+      if (configData && configData.length > 0) {
         const h = configData.find(item => item.id === 'hero_headline');
         const t = configData.find(item => item.id === 'hero_ticker');
-        if (h) setHeroHeadline(h.value);
-        if (t) setTickerText(t.value);
+        console.log('Found H:', h);
+        console.log('Found T:', t);
+        if (h && h.value) setHeroHeadline(h.value);
+        if (t && t.value) setTickerText(t.value);
+      } else {
+        console.log('No config data returned from Supabase.');
       }
     }
     fetchData();
