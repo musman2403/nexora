@@ -11,7 +11,7 @@ function Navbar({ userName }) {
     <nav className="navbar">
       <div className="nav-wrapper">
         <Link to="/" className="nav-logo" onClick={closeMenu}>
-          <img src="/images/Logo.png" alt="Nexora Ventures Logo" />
+          <img src="/favicon.png" alt="Nexora Ventures Logo" />
           <div className="logo-text-container">
             <span className="logo-text-top">NEXORA</span>
             <span className="logo-text-bottom">VENTURES</span>

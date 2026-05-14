@@ -16,7 +16,7 @@ const AdminLayout = () => {
     <div className="admin-container">
       <aside className="admin-sidebar">
         <div className="admin-brand">
-          <span className="brand-highlight">NEXORA</span>_ADMIN
+          DASHBOARD
         </div>
         <nav className="admin-nav">
           <NavLink to="/admin" end className={({isActive}) => isActive ? 'admin-nav-link active' : 'admin-nav-link'}>

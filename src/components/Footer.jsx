@@ -14,16 +14,19 @@ function Footer() {
     }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 160px), 1fr))', gap: '2.5rem' }}>
         <div className="footer-brand">
-          <h2 style={{
-            fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
-            fontWeight: '800',
-            marginBottom: '1rem',
-            letterSpacing: '-0.04em',
-            fontFamily: 'var(--font-display)',
-            background: 'linear-gradient(135deg, #FFFFFF 0%, var(--accent) 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>NEXORA VENTURES</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1.2rem' }}>
+            <img src="/favicon.png" alt="Nexora Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
+            <h2 style={{
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+              fontWeight: '800',
+              margin: 0,
+              letterSpacing: '-0.04em',
+              fontFamily: 'var(--font-display)',
+              background: 'linear-gradient(135deg, #FFFFFF 0%, var(--accent) 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}>NEXORA VENTURES</h2>
+          </div>
           <p style={{ fontSize: '0.82rem', maxWidth: '300px', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
             A leading real estate solutions company dedicated to transforming architectural visions into high-value realities.
           </p>

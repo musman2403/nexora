@@ -150,7 +150,7 @@ function AppInner() {
     const savedName = getCookie('nexora_user');
     if (savedName) {
       setUserName(savedName);
-    } else {
+    } else if (!location.pathname.startsWith('/admin')) {
       setShowEntry(true);
     }
 
@@ -181,8 +181,8 @@ function AppInner() {
 
   return (
     <>
-      {showEntry && <EntryGate onSubmit={handleNameSubmit} />}
-      <div className={`app-reveal ${isReady && !showEntry ? 'is-visible' : ''}`}>
+      {showEntry && !location.pathname.startsWith('/admin') && <EntryGate onSubmit={handleNameSubmit} />}
+      <div className={`app-reveal ${isReady && (!showEntry || location.pathname.startsWith('/admin')) ? 'is-visible' : ''}`}>
         <PageWipe />
         {!location.pathname.startsWith('/admin') && <Navbar userName={userName} />}
         <main>
