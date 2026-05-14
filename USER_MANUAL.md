@@ -4,6 +4,18 @@ Welcome to the Nexora Ventures Administration Portal. This manual provides a ste
 
 ---
 
+## 🔐 Accessing the Admin Portal
+
+To manage your website, you must log in to the secure administration area.
+
+- **Login URL:** [your-domain.com/login](https://your-domain.com/login)
+- **Admin Email:** `admin@nexora.com`
+- **Admin Password:** `admin123`
+
+*Note: Once logged in, you will be automatically redirected to the Dashboard. Your session will remain active as long as your browser remains open.*
+
+---
+
 ## 1. Global Site Settings
 **Located at:** Dashboard > Settings
 
