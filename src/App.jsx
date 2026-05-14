@@ -17,6 +17,7 @@ import AdminBlogs from './pages/AdminBlogs';
 import AdminQueries from './pages/AdminQueries';
 import AdminPartners from './pages/AdminPartners';
 import PartnerDetail from './pages/PartnerDetail';
+import AdminSettings from './pages/AdminSettings';
 import useNexora from './useNexora';
 import { supabase } from './supabaseClient';
 import { ArrowRight, Sparkles } from 'lucide-react';
@@ -204,6 +205,7 @@ function AppInner() {
               <Route path="blogs" element={<AdminBlogs />} />
               <Route path="queries" element={<AdminQueries />} />
               <Route path="partners" element={<AdminPartners />} />
+              <Route path="settings" element={<AdminSettings />} />
             </Route>
           </Routes>
         </main>

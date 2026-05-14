@@ -29,6 +29,18 @@ const TextSlider = ({ text }) => {
   );
 };
 
+const FloatingHeadline = ({ text }) => {
+  return (
+    <div className="floating-headline-container">
+      <div className="accent-bar bar-left" />
+      <div className="floating-headline-text">
+        {text}
+      </div>
+      <div className="accent-bar bar-right" />
+    </div>
+  );
+};
+
 const Carousel = () => {
   const navigate = useNavigate();
   const [partners, setPartners] = useState([]);
@@ -123,6 +135,7 @@ function Home({ userName }) {
   const containerRef = useRef(null);
   const [projects, setProjects] = useState([]);
   const [latestBlogs, setLatestBlogs] = useState([]);
+  const [heroHeadline, setHeroHeadline] = useState('Nexora Ventures delivers integrated real estate solutions — from strategic acquisition to turnkey delivery — for investors who demand precision.');
 
   useEffect(() => {
     async function fetchData() {
@@ -131,6 +144,9 @@ function Home({ userName }) {
 
       const { data: blogData } = await supabase.from('blogs').select('*').order('created_at', { ascending: false }).limit(3);
       if (blogData) setLatestBlogs(blogData);
+
+      const { data: configData } = await supabase.from('site_config').select('value').eq('id', 'hero_headline').single();
+      if (configData) setHeroHeadline(configData.value);
     }
     fetchData();
   }, []);
@@ -176,7 +192,7 @@ function Home({ userName }) {
         minHeight: '100vh',
         paddingTop: '180px',
         position: 'relative',
-        backgroundImage: 'url("/tech_hero.png")',
+        backgroundImage: 'url("/hero_prime.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
@@ -195,7 +211,7 @@ function Home({ userName }) {
             </h1>
           </div>
           <p className="subtitle" style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.25rem)', maxWidth: '550px', color: 'var(--text-secondary)' }}>
-            Nexora Ventures delivers technology-driven real estate solutions — from strategic acquisition to turnkey delivery — for investors who demand precision.
+            {heroHeadline}
           </p>
           <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', marginTop: '2.5rem', flexWrap: 'wrap' }}>
             <Link to="/projects" className="glass-btn primary-btn" style={{ padding: '1rem 2.5rem' }}>EXPLORE PORTFOLIO</Link>
@@ -203,6 +219,8 @@ function Home({ userName }) {
           </div>
         </div>
       </section>
+
+      <FloatingHeadline text={heroHeadline} />
 
       <TextSlider text="ARCHITECTING TOMORROW'S SKYLINES" />
 

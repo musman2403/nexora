@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FolderKanban, FileText, LogOut, MessageSquare, Users } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, FileText, LogOut, MessageSquare, Users, Settings } from 'lucide-react';
 import { supabase } from '../supabaseClient';
 import './AdminLayout.css';
 
@@ -33,6 +33,9 @@ const AdminLayout = () => {
           </NavLink>
           <NavLink to="/admin/queries" className={({isActive}) => isActive ? 'admin-nav-link active' : 'admin-nav-link'}>
             <MessageSquare size={20} /> Queries
+          </NavLink>
+          <NavLink to="/admin/settings" className={({isActive}) => isActive ? 'admin-nav-link active' : 'admin-nav-link'}>
+            <Settings size={20} /> Settings
           </NavLink>
         </nav>
         <button onClick={handleLogout} className="admin-logout-btn">
