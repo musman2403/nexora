@@ -180,12 +180,14 @@ function AppInner() {
     setShowEntry(false);
   };
 
+  const isExcludedRoute = location.pathname.startsWith('/admin') || location.pathname === '/login';
+
   return (
     <>
-      {showEntry && !location.pathname.startsWith('/admin') && <EntryGate onSubmit={handleNameSubmit} />}
-      <div className={`app-reveal ${isReady && (!showEntry || location.pathname.startsWith('/admin')) ? 'is-visible' : ''}`}>
+      {showEntry && !isExcludedRoute && <EntryGate onSubmit={handleNameSubmit} />}
+      <div className={`app-reveal ${isReady && (!showEntry || isExcludedRoute) ? 'is-visible' : ''}`}>
         <PageWipe />
-        {!location.pathname.startsWith('/admin') && <Navbar userName={userName} />}
+        {!isExcludedRoute && <Navbar userName={userName} />}
         <main>
           <Routes>
             <Route path="/" element={<Home userName={userName} />} />
@@ -209,7 +211,7 @@ function AppInner() {
             </Route>
           </Routes>
         </main>
-        {!location.pathname.startsWith('/admin') && <Footer />}
+        {!isExcludedRoute && <Footer />}
       </div>
     </>
   );
