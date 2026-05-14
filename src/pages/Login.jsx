@@ -12,12 +12,13 @@ const Login = () => {
     
     // Admin check for testing
     if (email === 'admin@nexora.com' && password === 'admin123') {
+      sessionStorage.setItem('nexora_admin_auth', 'true');
       navigate('/admin');
       return;
     }
     
     // Simulated general login
-    navigate('/');
+    alert('Invalid credentials');
   };
 
   return (

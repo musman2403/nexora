@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FolderKanban, FileText, LogOut, MessageSquare, Users, Settings } from 'lucide-react';
 import { supabase } from '../supabaseClient';
@@ -7,7 +7,15 @@ import './AdminLayout.css';
 const AdminLayout = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const isAuth = sessionStorage.getItem('nexora_admin_auth');
+    if (!isAuth) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
   const handleLogout = async () => {
+    sessionStorage.removeItem('nexora_admin_auth');
     await supabase.auth.signOut();
     navigate('/login');
   };
