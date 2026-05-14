@@ -234,7 +234,7 @@ function Home({ userName }) {
         </div>
       </section>
 
-      <FloatingHeadline text={heroHeadline} />
+
 
       <TextSlider text={tickerText} />
 
