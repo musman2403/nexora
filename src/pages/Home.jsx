@@ -221,7 +221,7 @@ function Home({ userName }) {
           <div className="hero-personal" style={{ marginBottom: '2rem' }}>
             <span className="accent-text">{userName ? `Welcome, ${userName}` : 'REAL ESTATE REDEFINED'}</span>
             <h1 className="text-reveal hero-title" style={{ fontSize: 'clamp(2.2rem, 8vw, 6rem)', fontWeight: 900, lineHeight: 0.9, fontFamily: 'var(--font-display)' }}>
-              Where Architecture <br /> <span style={{ fontStyle: 'normal', fontFamily: 'inherit', color: 'var(--accent)' }}>Meets Intelligence.</span>
+              Consult, Design, Build <br /> <span style={{ fontStyle: 'normal', fontFamily: 'inherit', color: 'var(--accent)' }}>& Market with Precision.</span>
             </h1>
           </div>
           <p className="subtitle" style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.25rem)', maxWidth: '550px', color: 'var(--text-secondary)' }}>
