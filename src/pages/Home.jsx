@@ -136,6 +136,7 @@ function Home({ userName }) {
   const [projects, setProjects] = useState([]);
   const [latestBlogs, setLatestBlogs] = useState([]);
   const [heroHeadline, setHeroHeadline] = useState('Nexora Ventures delivers integrated real estate solutions — from strategic acquisition to turnkey delivery — for investors who demand precision.');
+  const [tickerText, setTickerText] = useState("ARCHITECTING TOMORROW'S SKYLINES");
 
   useEffect(() => {
     async function fetchData() {
@@ -145,8 +146,13 @@ function Home({ userName }) {
       const { data: blogData } = await supabase.from('blogs').select('*').order('created_at', { ascending: false }).limit(3);
       if (blogData) setLatestBlogs(blogData);
 
-      const { data: configData } = await supabase.from('site_config').select('value').eq('id', 'hero_headline').single();
-      if (configData) setHeroHeadline(configData.value);
+      const { data: configData } = await supabase.from('site_config').select('*');
+      if (configData) {
+        const h = configData.find(item => item.id === 'hero_headline');
+        const t = configData.find(item => item.id === 'hero_ticker');
+        if (h) setHeroHeadline(h.value);
+        if (t) setTickerText(t.value);
+      }
     }
     fetchData();
   }, []);
@@ -222,7 +228,7 @@ function Home({ userName }) {
 
       <FloatingHeadline text={heroHeadline} />
 
-      <TextSlider text="ARCHITECTING TOMORROW'S SKYLINES" />
+      <TextSlider text={tickerText} />
 
       {/* STATS */}
       <section className="home-section" style={{ minHeight: 'auto', background: 'var(--bg-elevated)', padding: '80px 10%' }}>

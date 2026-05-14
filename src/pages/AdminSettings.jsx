@@ -4,6 +4,7 @@ import { supabase } from '../supabaseClient';
 
 const AdminSettings = () => {
   const [headline, setHeadline] = useState('');
+  const [ticker, setTicker] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -14,14 +15,15 @@ const AdminSettings = () => {
   async function fetchSettings() {
     setLoading(true);
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('site_config')
-        .select('value')
-        .eq('id', 'hero_headline')
-        .single();
+        .select('*');
 
       if (data) {
-        setHeadline(data.value);
+        const h = data.find(item => item.id === 'hero_headline');
+        const t = data.find(item => item.id === 'hero_ticker');
+        if (h) setHeadline(h.value);
+        if (t) setTicker(t.value);
       }
     } catch (e) {
       console.error("Error fetching settings:", e);
@@ -33,18 +35,19 @@ const AdminSettings = () => {
   const handleSave = async () => {
     setSaving(true);
     try {
+      const updates = [
+        { id: 'hero_headline', value: headline },
+        { id: 'hero_ticker', value: ticker }
+      ];
+      
       const { error } = await supabase
         .from('site_config')
-        .upsert({ id: 'hero_headline', value: headline });
+        .upsert(updates);
 
       if (error) {
-        if (error.code === '42P01') {
-          alert("Database table 'site_config' is missing. Please run the required SQL in your Supabase dashboard.");
-        } else {
-          alert(error.message);
-        }
+        alert(error.message);
       } else {
-        alert("Headline updated successfully!");
+        alert("Settings updated successfully!");
       }
     } catch (e) {
       alert("An unexpected error occurred.");
@@ -71,7 +74,7 @@ const AdminSettings = () => {
               Hero Sub-Headline (Floating beneath title)
             </label>
             <textarea
-              rows="4"
+              rows="3"
               className="entry-input"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
@@ -89,9 +92,29 @@ const AdminSettings = () => {
               }}
               disabled={loading}
             />
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginTop: '0.6rem' }}>
-              This text appears prominently on the homepage hero section. Keep it concise but impactful.
-            </p>
+          </div>
+
+          <div>
+            <label style={{ fontSize: '0.85rem', color: 'var(--muted)', display: 'block', marginBottom: '0.8rem' }}>
+              Scrolling Ticker Text (Blue Bar)
+            </label>
+            <input
+              type="text"
+              className="entry-input"
+              value={ticker}
+              onChange={(e) => setTicker(e.target.value)}
+              placeholder="Enter the text for the blue scrolling bar..."
+              style={{
+                width: '100%',
+                padding: '1.2rem',
+                borderRadius: '12px',
+                background: 'rgba(0,0,0,0.3)',
+                border: '1px solid var(--walnut-10)',
+                color: '#fff',
+                fontSize: '1rem'
+              }}
+              disabled={loading}
+            />
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
