@@ -6,13 +6,15 @@ import { supabase } from '../supabaseClient';
 
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
+  const features = project.features || [];
+  const investment = project.investment || {};
   return (
     <div className="modal-overlay" onClick={onClose} data-lenis-prevent>
       <div className="modal-content" style={{ maxWidth: '1000px' }} onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}><X /></button>
         <div className="modal-body" style={{ gridTemplateColumns: '1fr 1fr' }}>
           <div className="modal-image">
-            <img src={project.image} alt={project.title} style={{ height: '100%', objectFit: 'cover' }} />
+            <img src={project.image || '/cyber_project.png'} alt={project.title} style={{ height: '100%', objectFit: 'cover' }} />
           </div>
           <div className="modal-info">
             <span className="accent-text" style={{ marginBottom: '0.5rem' }}>{project.status}</span>
@@ -20,21 +22,21 @@ const ProjectModal = ({ project, onClose }) => {
             <p style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent)', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
               <MapPin size={16} /> {project.location}
             </p>
-            <p className="bio" style={{ fontSize: '1rem', marginBottom: '2rem' }}>{project.longDescription}</p>
+            <p className="bio" style={{ fontSize: '1rem', marginBottom: '2rem' }}>{project.description}</p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
               <div>
                 <h4 style={{ color: 'var(--text-secondary)', marginBottom: '1rem', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '0.1em' }}>Key Features</h4>
                 <ul className="modal-highlights">
-                  {project.features.map((feat, i) => (
+                  {features.length > 0 ? features.map((feat, i) => (
                     <li key={i} style={{ fontSize: '0.85rem' }}><CheckCircle size={14} /> {feat}</li>
-                  ))}
+                  )) : <li style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>No features listed.</li>}
                 </ul>
               </div>
               <div>
                 <h4 style={{ color: 'var(--text-secondary)', marginBottom: '1rem', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '0.1em' }}>Investment</h4>
-                <div style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--accent)' }}>{project.investment.price}</div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>{project.investment.plan}</div>
+                <div style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--accent)' }}>{investment.price || 'On Request'}</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>{investment.plan || ''}</div>
               </div>
             </div>
 

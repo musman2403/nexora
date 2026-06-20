@@ -138,6 +138,7 @@ export default function useNexora() {
     setupParallax();
 
     /* ═══ 2. MAGNETIC CURSOR ═══ */
+    let magneticMo = null;
     if (window.matchMedia('(hover: hover)').matches) {
       const cursor = document.createElement('div');
       cursor.className = 'nexora-cursor';
@@ -181,7 +182,7 @@ export default function useNexora() {
       attachMagnetic();
 
       // Re-attach on DOM changes
-      const magneticMo = new MutationObserver(attachMagnetic);
+      magneticMo = new MutationObserver(attachMagnetic);
       magneticMo.observe(document.body, { childList: true, subtree: true });
     }
 
@@ -191,6 +192,7 @@ export default function useNexora() {
       lenis.destroy();
       io.disconnect();
       mo.disconnect();
+      if (magneticMo) magneticMo.disconnect();
       if (cursorRef.current) {
         cursorRef.current.remove();
       }

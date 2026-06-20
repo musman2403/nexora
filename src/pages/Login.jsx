@@ -99,24 +99,9 @@ const Login = () => {
           </button>
         </form>
 
-        <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', margin: '1.5rem 0' }}>
-            <div style={{ flex: 1, height: '1px', background: 'var(--border)' }}></div>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>OR CONTINUE WITH</span>
-            <div style={{ flex: 1, height: '1px', background: 'var(--border)' }}></div>
-          </div>
-
-          <button className="glass-btn" style={{ width: '100%', justifyContent: 'center', margin: 0 }}>
-            <User size={18} /> GITHUB
-          </button>
-
           <p style={{ marginTop: '2rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-            Don't have an account? <Link to="/contact" style={{ color: 'var(--accent)', fontWeight: 700, textDecoration: 'none' }}>Get in touch</Link>
+            Need access? <Link to="/contact" style={{ color: 'var(--accent)', fontWeight: 700, textDecoration: 'none' }}>Get in touch</Link>
           </p>
-          <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--accent-soft)', borderRadius: 'var(--radius-sm)', fontSize: '0.8rem', color: 'var(--accent)', border: '1px solid var(--border-hover)' }}>
-            <strong>TEST ADMIN:</strong> admin@nexora.com / admin123
-          </div>
-        </div>
       </div>
     </div>
   );

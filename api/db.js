@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const { table, select, countOnly, filterCol, filterVal, orderCol, ascending, limit, single, upsert } = req.query;
+  const { table, select, countOnly, filterCol, filterVal, neqCol, neqVal, orderCol, ascending, limit, single, upsert } = req.query;
 
   if (!table) {
     return res.status(400).json({ error: 'Missing table parameter' });
@@ -46,6 +46,16 @@ export default async function handler(req, res) {
           query.id = isNaN(numVal) ? filterVal : numVal;
         } else {
           query[filterCol] = filterVal;
+        }
+      }
+
+      // neq (not-equal) filter support
+      if (neqCol && neqVal !== undefined) {
+        if (neqCol === 'id') {
+          const numVal = Number(neqVal);
+          query[neqCol] = { $ne: isNaN(numVal) ? neqVal : numVal };
+        } else {
+          query[neqCol] = { $ne: neqVal };
         }
       }
 

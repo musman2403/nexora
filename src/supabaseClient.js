@@ -20,6 +20,12 @@ class SupabaseQueryBuilder {
     return this;
   }
 
+  neq(column, value) {
+    this.params.neqCol = column;
+    this.params.neqVal = value;
+    return this;
+  }
+
   order(column, options = {}) {
     this.params.orderCol = column;
     this.params.ascending = options.ascending !== false ? 'true' : 'false';

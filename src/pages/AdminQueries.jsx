@@ -8,14 +8,33 @@ const AdminQueries = () => {
   const [selectedQuery, setSelectedQuery] = useState(null);
 
   useEffect(() => {
-    async function fetchQueries() {
-      setLoading(true);
-      const { data, error } = await supabase.from('queries').select('*').order('created_at', { ascending: false });
-      if (!error && data) setQueries(data);
-      setLoading(false);
-    }
     fetchQueries();
   }, []);
+
+  async function fetchQueries() {
+    setLoading(true);
+    const { data, error } = await supabase.from('queries').select('*').order('created_at', { ascending: false });
+    if (!error && data) setQueries(data);
+    setLoading(false);
+  }
+
+  async function markAsRead(e, id) {
+    e.stopPropagation();
+    await supabase.from('queries').update({ status: 'Read' }).eq('id', id);
+    setQueries(prev => prev.map(q => q.id === id ? { ...q, status: 'Read' } : q));
+    if (selectedQuery && selectedQuery.id === id) {
+      setSelectedQuery(prev => ({ ...prev, status: 'Read' }));
+    }
+  }
+
+  async function handleDelete(e, id) {
+    e.stopPropagation();
+    if (window.confirm('Are you sure you want to delete this query?')) {
+      await supabase.from('queries').delete().eq('id', id);
+      setQueries(prev => prev.filter(q => q.id !== id));
+      if (selectedQuery && selectedQuery.id === id) setSelectedQuery(null);
+    }
+  }
 
   return (
     <div>
@@ -63,9 +82,9 @@ const AdminQueries = () => {
                 </td>
                 <td style={{ textAlign: 'right' }}>
                   <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                    <button className="action-btn" title="Mark as Read" onClick={(e) => { e.stopPropagation(); /* implement mark read logic */ }}><CheckCircle size={14} /></button>
+                    <button className="action-btn" title="Mark as Read" onClick={(e) => markAsRead(e, q.id)}><CheckCircle size={14} /></button>
                     <button className="action-btn" title="Email Sender" onClick={(e) => { e.stopPropagation(); window.location.href=`mailto:${q.email}`; }}><Mail size={14} /></button>
-                    <button className="action-btn" style={{ borderColor: 'rgba(255,0,0,0.2)' }} onClick={(e) => { e.stopPropagation(); /* implement delete logic */ }}><Trash2 size={14} /></button>
+                    <button className="action-btn" style={{ borderColor: 'rgba(255,0,0,0.2)' }} onClick={(e) => handleDelete(e, q.id)}><Trash2 size={14} /></button>
                   </div>
                 </td>
               </tr>

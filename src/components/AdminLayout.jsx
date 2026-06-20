@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FolderKanban, FileText, LogOut, MessageSquare, Users, Settings } from 'lucide-react';
 import { supabase } from '../supabaseClient';
@@ -6,11 +6,14 @@ import './AdminLayout.css';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
+  const [authChecked, setAuthChecked] = useState(false);
 
   useEffect(() => {
     const isAuth = sessionStorage.getItem('nexora_admin_auth');
     if (!isAuth) {
       navigate('/login');
+    } else {
+      setAuthChecked(true);
     }
   }, [navigate]);
 
@@ -19,6 +22,8 @@ const AdminLayout = () => {
     await supabase.auth.signOut();
     navigate('/login');
   };
+
+  if (!authChecked) return null;
 
   return (
     <div className="admin-container">

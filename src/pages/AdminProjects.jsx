@@ -71,11 +71,18 @@ const AdminProjects = () => {
       }
     };
 
+    let error;
     if (formData.id) {
-      await supabase.from('projects').update(payload).eq('id', formData.id);
+      ({ error } = await supabase.from('projects').update(payload).eq('id', formData.id));
     } else {
-      await supabase.from('projects').insert([payload]);
+      ({ error } = await supabase.from('projects').insert([payload]));
     }
+
+    if (error) {
+      alert(`Save failed: ${error.message}`);
+      return;
+    }
+
     closeModal();
     fetchProjects();
   };

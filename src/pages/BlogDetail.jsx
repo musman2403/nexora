@@ -31,8 +31,12 @@ const BlogDetail = () => {
           .limit(3);
         setOtherPosts(others || []);
         
-        // Update view count
-        await supabase.from('blogs').update({ views: (data.views || 0) + 1 }).eq('id', id);
+        // Update view count (once per session per article)
+        const viewKey = `viewed_blog_${id}`;
+        if (!sessionStorage.getItem(viewKey)) {
+          sessionStorage.setItem(viewKey, 'true');
+          await supabase.from('blogs').update({ views: (data.views || 0) + 1 }).eq('id', id);
+        }
       } catch (err) {
         console.error('Error fetching blog post:', err);
         setError('Article not found or failed to load.');
