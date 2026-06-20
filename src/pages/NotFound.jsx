@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Compass, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const NotFound = ({ userName }) => {
   return (
@@ -13,6 +14,7 @@ const NotFound = ({ userName }) => {
       overflow: 'hidden',
       padding: '120px 2rem 60px'
     }}>
+      <SEO title="404 — Page Not Found" description="This page does not exist." noindex={true} />
       {/* Background Radial Glow */}
       <div style={{
         position: 'absolute',

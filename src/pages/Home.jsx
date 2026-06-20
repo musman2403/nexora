@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import SEO from '../components/SEO';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
@@ -193,6 +194,21 @@ function Home({ userName }) {
 
   return (
     <div className="home-container" ref={containerRef}>
+      <SEO
+        url="/"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Nexora Ventures",
+          "url": "https://nexora.com.pk",
+          "description": "Technology-driven real estate solutions — from strategic acquisition to turnkey construction for investors who demand precision.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://nexora.com.pk/blog?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }}
+      />
 
       {/* HERO */}
       <section className="home-section hero-section" style={{

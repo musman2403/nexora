@@ -1,6 +1,7 @@
 import React from 'react';
 import { Briefcase, Hammer, Layout, Building2, CheckCircle, ChevronRight, Ruler, PenTool, BarChart3, Users2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 function Services({ userName }) {
   const allServices = [
@@ -43,6 +44,27 @@ function Services({ userName }) {
 
   return (
     <div className="page-container">
+      <SEO
+        title="Our Services"
+        description="Nexora Ventures offers end-to-end real estate services: consultancy, development, architecture, renovation, and project marketing across Pakistan."
+        url="/services"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Nexora Ventures Real Estate Services",
+          "url": "https://nexora.com.pk/services",
+          "itemListElement": allServices.map((s, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "item": {
+              "@type": "Service",
+              "name": s.title,
+              "description": s.description,
+              "provider": { "@type": "Organization", "name": "Nexora Ventures" }
+            }
+          }))
+        }}
+      />
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
         <span className="accent-text">{userName ? `Tailored for you, ${userName}` : 'Our Expertise'}</span>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { Loader } from 'lucide-react';
+import SEO from '../components/SEO';
 
 function Contact({ userName }) {
   const [formData, setFormData] = useState({
@@ -51,6 +52,28 @@ ${formData.message}
 
   return (
     <div className="page-container">
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Nexora Ventures for real estate consultancy, investment inquiries, or project collaboration. Based in Lahore, serving all of Pakistan."
+        url="/contact"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Nexora Ventures",
+          "url": "https://nexora.com.pk/contact",
+          "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "Nexora Ventures",
+            "email": "info@nexora.com.pk",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Lahore",
+              "addressRegion": "Punjab",
+              "addressCountry": "PK"
+            }
+          }
+        }}
+      />
       <div className="contact-layout" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '3rem', maxWidth: '1200px', margin: '0 auto' }}>
         <div>
           <span className="accent-text">Contact Us</span>

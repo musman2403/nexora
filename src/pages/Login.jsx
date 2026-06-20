@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LogIn, Mail, Lock, ArrowRight, User } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -23,6 +24,7 @@ const Login = () => {
 
   return (
     <div className="page-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+      <SEO title="Admin Login" description="Nexora Ventures admin portal." noindex={true} />
       <div className="content-box" style={{ maxWidth: '450px', width: '100%', padding: '3rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <div style={{ 

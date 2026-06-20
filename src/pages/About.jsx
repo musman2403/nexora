@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const leaders = [
   {
@@ -80,6 +81,26 @@ function About({ userName }) {
 
   return (
     <div className="page-container">
+      <SEO
+        title="About Us"
+        description="Meet the Nexora Ventures team — visionary leaders with 23+ years in Pakistan's real estate and corporate sectors driving integrated, high-value property solutions."
+        url="/about"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About Nexora Ventures",
+          "url": "https://nexora.com.pk/about",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Nexora Ventures",
+            "employee": leaders.map(l => ({
+              "@type": "Person",
+              "name": l.name,
+              "jobTitle": l.role
+            }))
+          }
+        }}
+      />
       <Modal leader={selectedLeader} onClose={() => setSelectedLeader(null)} />
 
       {/* About Section */}

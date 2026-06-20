@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Search, Tag, Loader } from 'lucide-react';
 import { supabase } from '../supabaseClient';
+import SEO from '../components/SEO';
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
@@ -21,6 +22,30 @@ const Blog = () => {
 
   return (
     <div className="page-container">
+      <SEO
+        title="Our Journal"
+        description="Expert analysis and thought leadership from Nexora Ventures on Pakistan's real estate market, architecture, investment strategy, and urban development."
+        url="/blog"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "Nexora Ventures Journal",
+          "url": "https://nexora.com.pk/blog",
+          "description": "Insights and perspectives on real estate, architecture, and investment from Nexora Ventures.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Nexora Ventures",
+            "logo": { "@type": "ImageObject", "url": "https://nexora.com.pk/favicon.png" }
+          },
+          "blogPost": posts.slice(0, 5).map(p => ({
+            "@type": "BlogPosting",
+            "headline": p.title,
+            "url": `https://nexora.com.pk/blog/${p.id}`,
+            "datePublished": p.created_at,
+            "author": { "@type": "Person", "name": p.author || "Nexora Ventures" }
+          }))
+        }}
+      />
       <div style={{ marginBottom: '4rem' }}>
         <span className="accent-text">INSIGHTS & PERSPECTIVES</span>
         <h1 className="title-reveal" style={{ fontFamily: 'var(--font-display)' }}>Our Journal</h1>

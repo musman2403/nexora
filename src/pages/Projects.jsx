@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, MapPin, TrendingUp, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
+import SEO from '../components/SEO';
 
 
 const ProjectModal = ({ project, onClose }) => {
@@ -76,6 +77,18 @@ function Projects({ userName }) {
 
   return (
     <div className="page-container">
+      <SEO
+        title="Signature Projects"
+        description="Explore Nexora Ventures' signature real estate projects — high-value residential and commercial developments redefining urban living in Pakistan."
+        url="/projects"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Nexora Ventures Projects",
+          "url": "https://nexora.com.pk/projects",
+          "description": "Signature residential and commercial developments by Nexora Ventures."
+        }}
+      />
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
 
       <div style={{ textAlign: 'center', marginBottom: '5rem' }}>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, ArrowLeft, Loader, Tag, Share2, Clock } from 'lucide-react';
 import { supabase } from '../supabaseClient';
+import SEO from '../components/SEO';
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -68,6 +69,37 @@ const BlogDetail = () => {
 
   return (
     <div className="page-container">
+      <SEO
+        title={post.title}
+        description={post.excerpt || post.content?.substring(0, 160) || 'Read the latest insights from Nexora Ventures.'}
+        image={post.image}
+        url={`/blog/${id}`}
+        type="article"
+        article={{
+          publishedTime: post.created_at,
+          modifiedTime: post.updated_at || post.created_at,
+          author: post.author || 'Nexora Ventures',
+          tags: post.category ? [post.category] : []
+        }}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": post.title,
+          "description": post.excerpt || post.content?.substring(0, 200),
+          "image": post.image || "https://nexora.com.pk/og-image.png",
+          "datePublished": post.created_at,
+          "dateModified": post.updated_at || post.created_at,
+          "author": { "@type": "Person", "name": post.author || "Nexora Ventures" },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Nexora Ventures",
+            "logo": { "@type": "ImageObject", "url": "https://nexora.com.pk/favicon.png" }
+          },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": `https://nexora.com.pk/blog/${id}` },
+          "wordCount": post.content?.split(/\s+/).length || 0,
+          "articleSection": post.category || "Real Estate"
+        }}
+      />
       <Link to="/blog" className="glass-btn" style={{ marginBottom: '3rem', width: 'fit-content' }}>
         <ArrowLeft size={16} /> BACK TO JOURNAL
       </Link>

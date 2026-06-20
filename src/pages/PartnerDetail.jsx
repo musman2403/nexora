@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { ArrowLeft, Loader } from 'lucide-react';
+import SEO from '../components/SEO';
 
 function PartnerDetail() {
   const { name } = useParams();
@@ -41,6 +42,19 @@ function PartnerDetail() {
 
   return (
     <div className="page-container" style={{ paddingTop: '150px', paddingBottom: '100px' }}>
+      <SEO
+        title={partner.name}
+        description={`Learn about ${partner.name}, a trusted partner of Nexora Ventures in delivering high-quality real estate and infrastructure solutions across Pakistan.`}
+        url={`/partner/${encodeURIComponent(name)}`}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": partner.name,
+          "description": partner.details || `Strategic partner of Nexora Ventures.`,
+          "logo": partner.logo_url || undefined,
+          "url": `https://nexora.com.pk/partner/${encodeURIComponent(name)}`
+        }}
+      />
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 5%' }}>
         <Link to="/" className="glass-btn" style={{ display: 'inline-flex', marginBottom: '3rem', fontSize: '0.8rem', padding: '0.8rem 1.5rem' }}>
           <ArrowLeft size={16} /> BACK TO HOME
