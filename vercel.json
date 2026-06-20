@@ -9,6 +9,10 @@
       "destination": "/api/files.js?path=:path*"
     },
     {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
