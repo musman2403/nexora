@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/api/db/:table",
+      "destination": "/api/db.js?table=:table"
+    },
+    {
+      "source": "/api/files/:path*",
+      "destination": "/api/files.js?path=:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

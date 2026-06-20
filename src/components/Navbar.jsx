@@ -38,11 +38,6 @@ function Navbar({ userName }) {
         </div>
 
         <div className="nav-right">
-          {userName && (
-            <span style={{ color: 'var(--accent)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.05em', marginRight: '0.8rem' }} className="nav-desktop-cta">
-              Hi, {userName}
-            </span>
-          )}
           <NavLink to="/contact" className="contact-btn nav-desktop-cta">
             CONTACT US
           </NavLink>

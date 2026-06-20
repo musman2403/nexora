@@ -18,7 +18,9 @@ import AdminQueries from './pages/AdminQueries';
 import AdminPartners from './pages/AdminPartners';
 import PartnerDetail from './pages/PartnerDetail';
 import AdminSettings from './pages/AdminSettings';
+import NotFound from './pages/NotFound';
 import useNexora from './useNexora';
+
 import { supabase } from './supabaseClient';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -209,6 +211,9 @@ function AppInner() {
               <Route path="partners" element={<AdminPartners />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
+
+            {/* Catch-all 404 Route */}
+            <Route path="*" element={<NotFound userName={userName} />} />
           </Routes>
         </main>
         {!isExcludedRoute && <Footer />}

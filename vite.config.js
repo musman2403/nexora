@@ -10,5 +10,13 @@ export default defineConfig({
   ],
   define: {
     global: 'window',
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
+    }
   }
 })

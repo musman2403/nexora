@@ -396,7 +396,7 @@ h1, h2, h3, h4 {
 }
 
 .grid-item span {
-  color: var(--ink);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -466,7 +466,7 @@ h1, h2, h3, h4 {
 }
 
 .service-card h4 {
-  color: var(--ink);
+  color: var(--white);
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
@@ -498,7 +498,7 @@ h1, h2, h3, h4 {
 }
 
 .leader-card h4 {
-  color: var(--ink);
+  color: var(--white);
   font-size: 1.3rem;
   margin-bottom: 0.2rem;
 }
@@ -529,7 +529,7 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  color: var(--ink);
+  color: var(--text-primary);
   margin-bottom: 0.8rem;
 }
 
@@ -1333,7 +1333,7 @@ h1, h2, h3, h4 {
 .carousel-nav button {
   background: transparent;
   border: 1px solid var(--walnut-10);
-  color: var(--ink);
+  color: var(--text-primary);
   width: 50px;
   height: 50px;
   border-radius: 50%;
